@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attendance</title>
+  <link rel="stylesheet" href="./assets/css/profile.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+ <body class="attendance-page">
+
+  <header class="topbar">
+    <div class="user-info">
+      <img src="./assets/icons/user.png" class="user-icon" alt="User">   
+    </div>
+    <div class="top-icons">
+  <a href="./attendance">
+    <img src="./assets/icons/home.png" alt="Report" class="icon-btn">
+  </a>
+  <button id="signOutBtn" class="signout-btn">
+    <img src="./assets/icons/logout.png" alt="Logout" class="icon-btn">
+  </button>
+</div>
+
+</header>
+<div class="main-cont">
+  <div class="userFilter-feld" >
+    <div class="user_info">
+      <img src="./assets/icons/user.png" alt="">
+      <div class="user_email">
+        <p id="userName" class="user">Loading...</p>
+        <p id="email" class="email"></p>
+      </div>
+    </div>
+
+  <div class="user-detl">
+    <div class="personal-detl">
+      <h3>Personal Details</h3>
+    <div class="detlBox">
+        <img src="./assets/icons/dob.png" alt="" srcset="">
+        <p><span id="dob">-</span></p>
+      </div>    
+     <div class="detlBox">
+        <img src="./assets/icons/mobil.png" alt="" srcset="">
+        <p><span id="Mobile">-</span></p>
+      </div>
+      <div class="detlBox">
+        <img src="./assets/icons/addres.png" alt="" srcset="">
+        <p><span id="address">-</span></p>
+      </div>
+      <div class="detlBox">
+        <img src="./assets/icons/id-card.png" alt="" srcset="">
+        <p><span id="stafid">-</span><span id="details"></span></p>
+      </div>
+      <div class="detlBox">
+        <img src="./assets/icons/bank.png" alt="" srcset="">
+        <p><span id="bank">-</span></p>
+      </div>
+    </div>
+
+<div class="Staff-detl">
+      <h3>Staff Details</h3>
+    <div class="detlBox">
+      <img src="./assets/icons/group.png" alt="" srcset="" >
+       <p><span id="group">Chengannur Nidhi Limited</span></p>
+      </div>
+      <div class="detlBox">
+        <img src="./assets/icons/employe.png" alt="" srcset="" >
+        <p><span id="eCode">-</span></p>
+      </div>
+      <div class="detlBox">
+        <img src="./assets/icons/join.png" alt="" srcset="">
+        <p><span id="jDate">-</span></p>
+      </div>
+      <div class="detlBox">
+        <img src="./assets/icons/designation.png" alt="" srcset="">
+        <p><span id="designation">-</span></p>
+      </div>
+</div>    
+    </div>
+  </div>
+</div>
+
+
+      <script type="module" src="./assets/js/profile.js"></script>
+      <script type="module" src="./assets/js/utils/signout.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+.main-cont {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+.userFilter-feld {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.user_info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+.user_info img {
+  height: 50px;
+  width: 50px;
+  background-color: #b40000;
+  border-radius: 50%;
+  padding: 8px;
+  flex-shrink: 0;
+}
+.user_email {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.user {
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+.email {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+.user-detl {  
+  padding: 16px;
+  gap: 25px;
+}
+.personal-detl,
+.Staff-detl{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.personal-detl h3,
+.Staff-detl h3 {
+  margin-bottom: 0;
+  font-size: 20px; 
+  font-weight: bold;
+  text-decoration: underline;
+}
+.detlBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+.user-detl .detlBox img {
+  width: 25px; height: 25px; flex-shrink: 0; margin-top: 2px; padding: 4px; background-color: #b40000;border-radius: 50px;
+}
+.detlBox p {
+  display: flex;
+  align-items: start; 
+  gap: 35px;
+  padding: 6px;
+  font-size: 17px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.user-detl span {
+  word-break: break-word;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 19px;
+}

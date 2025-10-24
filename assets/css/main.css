@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=M+PLUS+Rounded+1c&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  background: #ebebebef;
+  color: #222; 
+}
+
+header.topbar {
+  background: #b40000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.user-info img {
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+}
+.top-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.icon-btn {
+  width: 28px;
+  height: 28px;
+}
+
+.signout-btn{
+  background:none;
+  border: none;
+} 

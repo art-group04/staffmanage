@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance</title>
+<link rel="stylesheet" href="./assets/css/atten.css">
+<link rel="stylesheet" href="./assets/css/main.css">
+
+</head>
+<body class="attendance-page">
+<header class="topbar">
+  <div class="user-info">
+    <a href="./profile">
+      <img src="./assets/icons/user.png" alt="User"></a>
+  </div>
+  <div class="top-icons">
+    <a href="./history">
+      <img src="./assets/icons/history.png" alt="Report" class="icon-btn">
+    </a>
+    <button id="signOutBtn" class="signout-btn">
+      <img src="./assets/icons/logout.png" alt="Logout" class="icon-btn">
+    </button>
+  </div>
+</header>
+
+<main class="content">
+  <p class="welcome-text">Hello,</p>
+  <h2 id="userName">Loading...</h2>
+
+  <section class="card">
+    <div class="card-header">
+      <h3>Today Attendance</h3>
+      <div class="check-bttn">
+        <button id="markBtn" class="btn checkin">Check In</button>
+        <br>
+        <button id="checkout" class="btn checkout">Check Out</button>
+      </div>
+    </div>
+    <div class="card-body blue">
+      <p class="branch"><img src="./assets/icons/location.png"><span id="branchSelect"></span></p>
+      <p><img src="./assets/icons/checkin.png"><span id="inTime">--</span></p>
+      <p><img src="./assets/icons/checkout.png"><span id="outTime">--</span></p>
+    </div>
+  </section>
+
+  <section class="card brake">
+  <div class="card-header">
+    <h3>Break Time</h3>
+    <div class="check-bttn">
+      <button id="brkout" class="btn brkin">Out</button>
+      <br>
+      <button id="brkin" class="btn brkout">In</button>
+    </div>
+  </div>
+  <div class="card-body red">
+    
+
+    <p><img src="./assets/icons/checkout.png">
+      <span id="breakOutTime">--</span>
+    </p>
+
+    <p><img src="./assets/icons/checkin.png">
+      <span id="breakInTime">--</span>
+    </p>
+
+    <p><img src="./assets/icons/purpose.png">
+      <span id="breakPurpose">--</span>
+    </p>
+  </div>
+</section>
+
+  <section class="card leave">
+  <div class="card-header">
+    <h3>Leave Application</h3>
+    <div class="check-bttn">
+      <button id="alyLeav" class="btn alyLeav">Apply</button>
+      <br>
+      <button id="cslLeav" class="btn cslLeav">Cancel</button>
+    </div>
+  </div>
+  <div class="card-body red">
+    
+
+    <p><img src="./assets/icons/aplydate.png">
+      <span id="ApplyDate">--</span>
+    </p>
+
+    <p><img src="./assets/icons/levdate.png">
+      <span id="leaveDate">--</span>
+    </p>
+
+    <p><img src="./assets/icons/status.png">
+      <span id="LeaveStatus">--</span>
+    </p>
+  </div>
+</section>
+
+
+  <div id="status" class="status-box"></div>
+</main>
+<!-- Loading-- -->
+<div id="loader"><div class="spinner"></div></div>
+
+<!-- Break Purpose Popup -->
+<div id="breakPopup" class="popup-overlay">
+  <div class="popup">
+    <h3>Break Out</h3>
+    <p>Please enter the reason for break:</p>
+    <textarea id="breakPurposeInput" placeholder="e.g. Hospital, Bank visit..." rows="3"></textarea>
+    <div class="popup-buttons">
+      <button id="breakConfirm" class="btn confirm">Confirm</button>
+      <button id="breakCancel" class="btn cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Check Out Popup -->
+<div id="checkoutPopup" class="popup-overlay">
+  <div class="popup">
+    <h3>Check Out</h3>
+    <p>Are you sure you want to check out?</p>
+    <div class="popup-buttons">
+      <button id="checkoutConfirm" class="btn confirm">Yes, Check Out</button>
+      <button id="checkoutCancel" class="btn cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Leave apply popup -->
+ <div id="leavePopup" class="popup-overlay">
+  <div class="popup">
+    <h3>Leave Application</h3>
+    <p>Fill All required Feld</p>
+    <div class="popup-buttons">
+      <button id="checkoutConfirm" class="btn confirm">Yes, Check Out</button>
+      <button id="checkoutCancel" class="btn cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="./assets/js/attendance.js"></script>
+<script type="module" src="./assets/js/utils/signout.js"></script>
+
+</body>
+</html>
