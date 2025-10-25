@@ -18,6 +18,7 @@ console.log("Logged in user:", currentUser);
   stafid.textContent = currentUser.stafid;
   details.textContent = currentUser.iddetails;
   bank.textContent = currentUser.bank;
+  group.textContent = currentUser.company;
 
   function maskBankDisplay(selector) {
   document.querySelectorAll(selector).forEach(el => {
