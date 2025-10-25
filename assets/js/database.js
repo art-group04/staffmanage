@@ -1,39 +1,17 @@
 // firebase.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-import {
-  getFirestore,
-  getDoc,
-  doc,
-  addDoc,
-  updateDoc,
-  collection,
-  getDocs,
-  query,
-  where,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+import { getFirestore,  getDoc,  doc,  addDoc,  updateDoc, deleteDoc,  collection,  getDocs,  query,  where,  serverTimestamp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 const firebaseConfig = {
-   apiKey: "AIzaSyCOcsL9ahdFUunWDAcv5JZdnMxMZehquhg",
+    apiKey: "AIzaSyCOcsL9ahdFUunWDAcv5JZdnMxMZehquhg",
     authDomain: "art-staffmanage.firebaseapp.com",
     projectId: "art-staffmanage",
     storageBucket: "art-staffmanage.firebasestorage.app",
     messagingSenderId: "951269778971",
-    appId: "1:951269778971:web:11fbb26385588ced133abe"
+    appId: "1:951269778971:web:11fbb26385588ced133abe"   
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export {
-  db,
-  getDoc,
-  doc,
-  addDoc,
-  updateDoc,
-  collection,
-  getDocs,
-  query,
-  where,
-  serverTimestamp
-};
+export { db,  getDoc,  doc,  addDoc,  updateDoc, deleteDoc,  collection,  getDocs,  query,  where,  serverTimestamp };

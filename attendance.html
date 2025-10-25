@@ -28,12 +28,12 @@
   <p class="welcome-text">Hello,</p>
   <h2 id="userName">Loading...</h2>
 
+<!---Today Attendance-->
   <section class="card">
     <div class="card-header">
       <h3>Today Attendance</h3>
       <div class="check-bttn">
-        <button id="markBtn" class="btn checkin">Check In</button>
-        <br>
+        <button id="markBtn" class="btn checkin">Check In</button><br>
         <button id="checkout" class="btn checkout">Check Out</button>
       </div>
     </div>
@@ -44,61 +44,53 @@
     </div>
   </section>
 
+<!---Break Time------>
   <section class="card brake">
-  <div class="card-header">
-    <h3>Break Time</h3>
-    <div class="check-bttn">
-      <button id="brkout" class="btn brkin">Out</button>
-      <br>
-      <button id="brkin" class="btn brkout">In</button>
+    <div class="card-header">
+      <h3>Break Time</h3>
+      <div class="check-bttn">
+        <button id="brkout" class="btn brkin">Out</button><br>
+        <button id="brkin" class="btn brkout">In</button>
+      </div>
     </div>
-  </div>
-  <div class="card-body red">
-    
+    <div class="card-body red">
+      <p><img src="./assets/icons/checkout.png">
+        <span id="breakOutTime">-</span>
+      </p>
+      <p><img src="./assets/icons/checkin.png">
+        <span id="breakInTime">-</span>
+      </p>
+      <p><img src="./assets/icons/purpose.png">
+        <span id="breakPurpose">-</span>
+      </p>
+    </div>
+  </section>
 
-    <p><img src="./assets/icons/checkout.png">
-      <span id="breakOutTime">--</span>
-    </p>
-
-    <p><img src="./assets/icons/checkin.png">
-      <span id="breakInTime">--</span>
-    </p>
-
-    <p><img src="./assets/icons/purpose.png">
-      <span id="breakPurpose">--</span>
-    </p>
-  </div>
-</section>
-
+<!-----Leave Application-------->
   <section class="card leave">
-  <div class="card-header">
-    <h3>Leave Application</h3>
-    <div class="check-bttn">
-      <button id="alyLeav" class="btn alyLeav">Apply</button>
-      <br>
-      <button id="cslLeav" class="btn cslLeav">Cancel</button>
+    <div class="card-header">
+      <h3>Leave Application</h3>
+      <div class="check-bttn">
+        <button id="alyLeav" class="btn alyLeav">Apply</button><br>
+        <button id="cslLeav" class="btn cslLeav">Cancel</button>
+      </div>
     </div>
-  </div>
-  <div class="card-body red">
-    
+    <div class="card-body red">
+      <p><img src="./assets/icons/aplydate.png">
+        <span id="ApplyDate">-</span>
+      </p>
+      <p><img src="./assets/icons/levdate.png">
+        <span id="leaveDate">-</span>
+      </p>
+      <p><img src="./assets/icons/status.png">
+        <span id="leaveStatus">-</span>
+      </p>
+    </div>
+  </section>
 
-    <p><img src="./assets/icons/aplydate.png">
-      <span id="ApplyDate">--</span>
-    </p>
-
-    <p><img src="./assets/icons/levdate.png">
-      <span id="leaveDate">--</span>
-    </p>
-
-    <p><img src="./assets/icons/status.png">
-      <span id="LeaveStatus">--</span>
-    </p>
-  </div>
-</section>
-
-
-  <div id="status" class="status-box"></div>
+<div id="status" class="status-box"></div>
 </main>
+
 <!-- Loading-- -->
 <div id="loader"><div class="spinner"></div></div>
 
@@ -127,20 +119,54 @@
   </div>
 </div>
 
-<!-- Leave apply popup -->
- <div id="leavePopup" class="popup-overlay">
-  <div class="popup">
-    <h3>Leave Application</h3>
-    <p>Fill All required Feld</p>
-    <div class="popup-buttons">
-      <button id="checkoutConfirm" class="btn confirm">Yes, Check Out</button>
-      <button id="checkoutCancel" class="btn cancel">Cancel</button>
+<!--leave popup-->
+<div id="leavePopup" class="popup-overlay-leave">
+  <div class="leave-popup">
+    <div class="titile">
+      <h3>Leave Application</h3>
+      <p>Fill all required fields</p>
+    </div>
+    <div class="inputFelds" >
+      <div class="inputBox">
+        <label for="levType">Leave Type</label>
+        <select id="levType" required>
+          <option disabled selected>select leave type</option>
+          <option value="Half">Half</option>
+          <option value="Full">Full</option>
+          <option value="LongLeave">Long Leave</option>
+        </select>
+      </div>
+      <div class="inputBox" id="levTimeBox" style="display: none;">
+        <label for="levTime">Session:</label>
+        <select id="levTime" >
+          <option disabled selected></option><option value="Morning">Morning</option>
+          <option value="Afternoon">Afternoon</option>
+        </select>
+      </div>
+      <div class="inputBox">
+        <label for="levDate">Leave Date:</label>
+        <input type="date" id="levDate" placeholder="Leave Date" >
+      </div>
+      <div class="inputBox" id="levToDateBox" style="display: none;">
+        <label for="levToDate">to date :</label>
+        <input type="date" id="levToDate" placeholder="to date">
+      </div>
+      <div class="inputBox">
+        <label for="levReason">Reason</label>
+        <input type="text" id="levReason" placeholder="Reason for leave">
+      </div>
+    </div>
+    <div class="leave-popup-buttons">
+      <button id="CancelAplitn" class="btn leavcancel">Cancel</button>
+      <button id="ConfirmLev" class="btn leavconfirm">Apply</button>
     </div>
   </div>
 </div>
 
 <script type="module" src="./assets/js/attendance.js"></script>
 <script type="module" src="./assets/js/utils/signout.js"></script>
+<script type="module" src="./assets/js/leaveapp.js"></script>
+<script src="./assets/js/utils/popup.js"></script>
 
 </body>
 </html>

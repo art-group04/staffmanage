@@ -1,9 +1,9 @@
 import { db,  getDoc,  doc,  addDoc,  updateDoc,  collection,  getDocs,  query,  where,  serverTimestamp } from './database.js';
-// ---------------- ELEMENTS ----------------
-const loader = document.getElementById("loader");
-const currentUser = JSON.parse(localStorage.getItem("loggedUser"));
-if (!currentUser) window.location.href = "./";
+import { loader, currentUser } from "./utils/loggeduser.js";
 
+console.log("Logged in user:", currentUser);
+
+// ---------------- ELEMENTS ----------------
 const userName = document.getElementById("userName");
 const markBtn = document.getElementById("markBtn");
 const checkoutBtn = document.getElementById("checkout");

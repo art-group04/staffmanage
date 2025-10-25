@@ -1,10 +1,10 @@
 import { db, collection, query, where, getDocs } from './database.js';
 import { formatDate } from './utils/formatdate.js';
+import { loader, currentUser } from "./utils/loggeduser.js";
+
+console.log("Logged in user:", currentUser);
 
     formatDate();
-
-const currentUser = JSON.parse(localStorage.getItem("loggedUser"));
-if(!currentUser) window.location.href = "./";
 
 userName.textContent = currentUser.user;
   email.textContent = currentUser.username;
