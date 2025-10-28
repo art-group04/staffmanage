@@ -45,5 +45,11 @@
 </div>
 
   <script type="module" src="./assets/js/auth.js"></script>
+  <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./resources/service-worker.js')
+    .then(() => console.log('Service Worker Registered'));
+}
+</script>
 </body>
 </html>

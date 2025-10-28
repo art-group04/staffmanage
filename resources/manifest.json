@@ -1,6 +1,11 @@
 {
   "name": "A R T Group",
   "short_name": "Art Group",
+  "start_url": "/staffmanage/",
+  "scope": "/staffmanage/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
   "icons": [
     {
       "src": "../assets/images/icon.png",
@@ -12,7 +17,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "start_url": "/",
-  "display": "standalone"
+  ]
 }
