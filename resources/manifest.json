@@ -13,7 +13,7 @@
       "type": "image/png"
     },
     {
-      "src": "assets/images/logo.png",
+      "src": "../assets/images/icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
