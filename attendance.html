@@ -6,23 +6,45 @@
 <title>Attendance</title>
 <link rel="stylesheet" href="./assets/css/atten.css">
 <link rel="stylesheet" href="./assets/css/main.css">
-
-</head>
-<body class="attendance-page">
 <header class="topbar">
   <div class="user-info">
-    <a href="./profile">
-      <img src="./assets/icons/user.png" alt="User"></a>
+    <img src="./assets/icons/menu.png" alt="User" class="user-icon" id="openMenuBtn">
   </div>
-  <div class="top-icons">
-    <a href="./history">
-      <img src="./assets/icons/history.png" alt="Report" class="icon-btn">
-    </a>
+
+  <div class="top-icons">    
     <button id="signOutBtn" class="signout-btn">
       <img src="./assets/icons/logout.png" alt="Logout" class="icon-btn">
     </button>
   </div>
 </header>
+
+<!-- ✅ Side Menu -->
+<aside class="side-menu" id="sideMenu">
+  <div class="menu-header">
+    <img src="./assets/icons/menu.png" alt="User" class="menu-user" id="closeMenu">
+    <button id="closeMenuBtn" class="close-btn">X</button>
+  </div>
+
+  <div class="side-menu-cont">
+  <ul class="menu-list">
+    <li><img src="./assets/icons/home.png" alt="Report" class="icon-btn"><a href="./attendance">Home</a></li>
+    <li><img src="./assets/icons/user.png" alt="Report" class="icon-btn"><a href="./profile">Profile</a></li>
+    <li><img src="./assets/icons/perform.png" alt="Report" class="icon-btn"><a href="./performance">Performance</a></li>
+    <li><img src="./assets/icons/history.png" alt="Report" class="icon-btn"><a href="./history">History</a></li>
+  </ul>
+
+  <div class="user_info-menu" >
+      <img src="./assets/icons/user.png" alt="" >
+      <div class="user_email">
+        <p id="userNamemenu" class="user">Loading...</p>
+        <p id="emailmenu" class="email"></p>
+      </div>
+  </div>
+</aside>
+
+<!-- Overlay background -->
+<div id="overlay" class="overlay"></div>
+
 
 <main class="content">
   <p class="welcome-text">Hello,</p>
@@ -167,6 +189,8 @@
 <script type="module" src="./assets/js/utils/signout.js"></script>
 <script type="module" src="./assets/js/leaveapp.js"></script>
 <script src="./assets/js/utils/popup.js"></script>
+<script src="./assets/js/utils/sidemenu.js"></script>
+
 
 </body>
 </html>

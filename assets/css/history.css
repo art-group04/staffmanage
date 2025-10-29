@@ -1,7 +1,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 85vh;
   padding: 10px; 
   overflow: hidden;
 }
@@ -11,8 +11,9 @@
   left: 0;
   right: 0;
   background: #ebebeb;
-  z-index: 900;
+  z-index: 100;
   padding: 10px;
+  
 }
 .user_info {
   display: flex;
@@ -33,13 +34,13 @@
   justify-content: center;
   align-items: flex-start;
 }
-.user {
+.his-user {
   font-size: 19px;
   font-weight: 800;
   text-transform: uppercase;
   margin: 0;
 }
-.email {
+.his-email {
   font-size: 16px;
   font-weight: 700;
   color: #555;
@@ -124,9 +125,10 @@
   display: flex;
   align-items: center;
   margin: 3px 0;
-  gap: 8px;
+  gap: 10px;
   font-size: 17px;
   font-weight: 600;
+  padding: 7px;
 }
 .branch_nme {
   text-transform: uppercase;
