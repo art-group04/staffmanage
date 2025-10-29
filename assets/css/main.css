@@ -4,7 +4,36 @@ body {
   font-family: "Lato", sans-serif;
   background: #ebebebef;
   color: #222; 
+}.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #b40000;
+  padding: 8px 16px;
+  color: white;
+  position: relative;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+
 }
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+}
+.user-icon:hover {
+  opacity: 0.8;
+}
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* ---------- Side Menu ---------- */
 .side-menu {
   position: fixed;
   top: 0;
