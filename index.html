@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - Branch Attendance</title>
   <link rel="stylesheet" href="./assets/css/mobil.css">
+  <link rel="manifest" href="./resources/manifest.json">
 </head>
 
 <div class="login-card">
@@ -36,5 +37,12 @@
 </div>
 
   <script type="module" src="./assets/js/auth.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./resources/service-worker.js')
+      .then(() => console.log("Service Worker registered"))
+      .catch(err => console.error("SW registration failed", err));
+  }
+</script>
 </body>
 </html>
