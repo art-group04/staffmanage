@@ -3,6 +3,8 @@ import { db, collection, getDocs, query, where, updateDoc, doc } from './databas
 const statusBox = document.getElementById("status-mssg");
 const email = document.getElementById("email");
 const pass = document.getElementById("pass");
+const enableLocationBtn = document.getElementById("enableLocationBtn");
+let lastPosition = null;
 
 // 🔹 Generate or get unique device ID
 const getDeviceId = () => {
@@ -15,6 +17,73 @@ const getDeviceId = () => {
 };
 const currentDeviceId = getDeviceId();
 
+const requestLocation = (opts = {}) => new Promise((resolve) => {
+  if (!('geolocation' in navigator)) {
+    statusBox.textContent = "Location not supported on this device";
+    resolve(false);
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      lastPosition = pos;
+      resolve(true);
+    },
+    () => {
+      resolve(false);
+    },
+    { enableHighAccuracy: false, timeout: 5000, maximumAge: 30000, ...opts }
+  );
+});
+
+const getCachedLocation = (maxAgeMs = 60000) => {
+  try {
+    const raw = sessionStorage.getItem('lastLocation');
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed?.ts) return null;
+    if (Date.now() - parsed.ts > maxAgeMs) return null;
+    return parsed;
+  } catch { return null; }
+};
+
+const checkLocationEnabled = async () => {
+  const cached = getCachedLocation();
+  if (cached) return true;
+  if (navigator.permissions?.query) {
+    try {
+      const p = await navigator.permissions.query({ name: 'geolocation' });
+      if (p.state === 'granted') {
+        const ok = await requestLocation();
+        return ok;
+      }
+      return false;
+    } catch {}
+  }
+  const ok = await requestLocation();
+  return ok;
+};
+
+if (enableLocationBtn) {
+  enableLocationBtn.onclick = async () => {
+    statusBox.textContent = "Requesting location...";
+    const ok = await requestLocation();
+    if (ok) {
+      statusBox.textContent = "Location enabled";
+      enableLocationBtn.style.display = "none";
+      if (lastPosition?.coords) {
+        sessionStorage.setItem('lastLocation', JSON.stringify({
+          lat: lastPosition.coords.latitude,
+          lng: lastPosition.coords.longitude,
+          accuracy: lastPosition.coords.accuracy,
+          ts: Date.now()
+        }));
+      }
+    } else {
+      statusBox.textContent = "Turn on device location and allow browser permission";
+    }
+  };
+}
+
 document.getElementById("signInBtn").onclick = async () => {
   const username = email.value.trim();
   const password = pass.value.trim();
@@ -22,6 +91,25 @@ document.getElementById("signInBtn").onclick = async () => {
   if (!username || !password) {
     statusBox.textContent = "Enter username and password";
     return;
+  }
+
+  const cachedLoc = getCachedLocation();
+  let locationOk = !!cachedLoc;
+  if (!locationOk) {
+    locationOk = await checkLocationEnabled();
+    if (!locationOk) {
+      statusBox.textContent = "Location is off. Enable location to continue";
+      if (enableLocationBtn) enableLocationBtn.style.display = "block";
+      return;
+    }
+  }
+  if (!cachedLoc && lastPosition?.coords) {
+    sessionStorage.setItem('lastLocation', JSON.stringify({
+      lat: lastPosition.coords.latitude,
+      lng: lastPosition.coords.longitude,
+      accuracy: lastPosition.coords.accuracy,
+      ts: Date.now()
+    }));
   }
 
   // 🔹 Check if user exists
@@ -63,5 +151,20 @@ document.getElementById("signInBtn").onclick = async () => {
   localStorage.setItem("loggedUser", JSON.stringify(minimalUserData));
 
   // 🔹 Redirect
-  window.location.href = "./attendance";
+  window.location.href = "./attendance.html";
 };
+
+(async () => {
+  const ok = await checkLocationEnabled();
+  if (ok && lastPosition?.coords) {
+    sessionStorage.setItem('lastLocation', JSON.stringify({
+      lat: lastPosition.coords.latitude,
+      lng: lastPosition.coords.longitude,
+      accuracy: lastPosition.coords.accuracy,
+      ts: Date.now()
+    }));
+    statusBox.textContent = "Location ready";
+  } else {
+    if (enableLocationBtn) enableLocationBtn.style.display = "block";
+  }
+})();
