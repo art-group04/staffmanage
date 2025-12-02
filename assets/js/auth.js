@@ -1,4 +1,4 @@
-import { db, collection, getDocs, query, where, updateDoc, doc } from './database.js';
+import { db, collection, getDocs, query, where, updateDoc, doc, serverTimestamp } from './database.js';
 
 const statusBox = document.getElementById("status-mssg");
 const email = document.getElementById("email");
@@ -17,7 +17,7 @@ const getDeviceId = () => {
 };
 const currentDeviceId = getDeviceId();
 
-const requestLocation = (opts = {}) => new Promise((resolve) => {
+const requestLocation = () => new Promise((resolve) => {
   if (!('geolocation' in navigator)) {
     statusBox.textContent = "Location not supported on this device";
     resolve(false);
@@ -31,24 +31,11 @@ const requestLocation = (opts = {}) => new Promise((resolve) => {
     () => {
       resolve(false);
     },
-    { enableHighAccuracy: false, timeout: 5000, maximumAge: 30000, ...opts }
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
   );
 });
 
-const getCachedLocation = (maxAgeMs = 60000) => {
-  try {
-    const raw = sessionStorage.getItem('lastLocation');
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (!parsed?.ts) return null;
-    if (Date.now() - parsed.ts > maxAgeMs) return null;
-    return parsed;
-  } catch { return null; }
-};
-
 const checkLocationEnabled = async () => {
-  const cached = getCachedLocation();
-  if (cached) return true;
   if (navigator.permissions?.query) {
     try {
       const p = await navigator.permissions.query({ name: 'geolocation' });
@@ -74,8 +61,7 @@ if (enableLocationBtn) {
         sessionStorage.setItem('lastLocation', JSON.stringify({
           lat: lastPosition.coords.latitude,
           lng: lastPosition.coords.longitude,
-          accuracy: lastPosition.coords.accuracy,
-          ts: Date.now()
+          accuracy: lastPosition.coords.accuracy
         }));
       }
     } else {
@@ -93,22 +79,17 @@ document.getElementById("signInBtn").onclick = async () => {
     return;
   }
 
-  const cachedLoc = getCachedLocation();
-  let locationOk = !!cachedLoc;
+  const locationOk = await checkLocationEnabled();
   if (!locationOk) {
-    locationOk = await checkLocationEnabled();
-    if (!locationOk) {
-      statusBox.textContent = "Location is off. Enable location to continue";
-      if (enableLocationBtn) enableLocationBtn.style.display = "block";
-      return;
-    }
+    statusBox.textContent = "Location is off. Enable location to continue";
+    if (enableLocationBtn) enableLocationBtn.style.display = "block";
+    return;
   }
-  if (!cachedLoc && lastPosition?.coords) {
+  if (lastPosition?.coords) {
     sessionStorage.setItem('lastLocation', JSON.stringify({
       lat: lastPosition.coords.latitude,
       lng: lastPosition.coords.longitude,
-      accuracy: lastPosition.coords.accuracy,
-      ts: Date.now()
+      accuracy: lastPosition.coords.accuracy
     }));
   }
 
@@ -150,8 +131,19 @@ document.getElementById("signInBtn").onclick = async () => {
 
   localStorage.setItem("loggedUser", JSON.stringify(minimalUserData));
 
+  const storedLoc = sessionStorage.getItem('lastLocation');
+  if (storedLoc) {
+    try {
+      const parsed = JSON.parse(storedLoc);
+      await updateDoc(doc(db, 'users', docSnap.id), {
+        lastLoginLocation: parsed,
+        lastLoginAt: serverTimestamp()
+      });
+    } catch {}
+  }
+
   // 🔹 Redirect
-  window.location.href = "./attendance";
+  window.location.href = "./attendance.html";
 };
 
 (async () => {
@@ -160,8 +152,7 @@ document.getElementById("signInBtn").onclick = async () => {
     sessionStorage.setItem('lastLocation', JSON.stringify({
       lat: lastPosition.coords.latitude,
       lng: lastPosition.coords.longitude,
-      accuracy: lastPosition.coords.accuracy,
-      ts: Date.now()
+      accuracy: lastPosition.coords.accuracy
     }));
     statusBox.textContent = "Location ready";
   } else {
