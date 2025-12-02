@@ -41,7 +41,7 @@ fetch("./common/navbar.html")
           if (window.__geoWatchId) {
             try { navigator.geolocation.clearWatch(window.__geoWatchId); } catch {}
           }
-          window.location.href = "./index.html";
+          window.location.href = "./";
         });
       } else {
         console.warn("⚠️ signOutBtn not found in navbar.");

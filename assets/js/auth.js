@@ -151,7 +151,7 @@ document.getElementById("signInBtn").onclick = async () => {
   localStorage.setItem("loggedUser", JSON.stringify(minimalUserData));
 
   // 🔹 Redirect
-  window.location.href = "./attendance.html";
+  window.location.href = "./attendance";
 };
 
 (async () => {
